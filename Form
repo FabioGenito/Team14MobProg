@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Team Info</title>
+<style>
+  /* Reset e base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f2f5;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  /* Card base */
+  .card {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgb(0 0 0 / 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* Effetti onHover diversi per ogni card */
+  .card:hover {
+    box-shadow: 0 10px 20px rgb(0 0 0 / 0.2);
+    transform: translateY(-10px);
+  }
+  .card:nth-child(1):hover {
+    background: #e0f7fa;
+    color: #00796b;
+    transform: scale(1.05) translateY(-10px);
+  }
+  .card:nth-child(2):hover {
+    background: #fce4ec;
+    color: #880e4f;
+    transform: rotate(2deg) translateY(-10px);
+  }
+  .card:nth-child(3):hover {
+    background: #fff3e0;
+    color: #ef6c00;
+    transform: translateX(5px) translateY(-10px);
+  }
+  .card:nth-child(4):hover {
+    background: #ede7f6;
+    color: #512da8;
+    transform: translateX(-5px) translateY(-10px);
+  }
+
+  /* Immagine profilo */
+  .card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 3px solid #ddd;
+  }
+
+  /* Nome */
+  .card h3 {
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+  }
+  /* Ruolo */
+  .card p.role {
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0.2rem 0 1rem 0;
+    font-style: italic;
+  }
+  /* Bio o descrizione */
+  .card p.bio {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #555;
+  }
+</style>
+</head>
+<body>
+
+<div class="container" id="team-container">
+  <!-- Cards generate via JS -->
+</div>
+
+<script>
+  // Dati team
+  const teamMembers = [
+    {
+      name: "Luca Rossi",
+      role: "Project Manager",
+      bio: "Responsabile della pianificazione e coordinamento del progetto.",
+      img: "https://randomuser.me/api/portraits/men/32.jpg"
+    },
+    {
+      name: "Maria Bianchi",
+      role: "Lead Developer",
+      bio: "Esperta in sviluppo front-end e architettura software.",
+      img: "https://randomuser.me/api/portraits/women/44.jpg"
+    },
+    {
+      name: "Marco Verdi",
+      role: "UI/UX Designer",
+      bio: "Si occupa del design dell'interfaccia e dell'esperienza utente.",
+      img: "https://randomuser.me/api/portraits/men/76.jpg"
+    },
+    {
+      name: "Elena Neri",
+      role: "QA Specialist",
+      bio: "Garantisce la qualità e il testing del prodotto finale.",
+      img: "https://randomuser.me/api/portraits/women/68.jpg"
+    }
+  ];
+
+  const container = document.getElementById('team-container');
+
+  teamMembers.forEach(member => {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.innerHTML = `
+      <img src="${member.img}" alt="Foto di ${member.name}">
+      <h3>${member.name}</h3>
+      <p class="role">${member.role}</p>
+      <p class="bio">${member.bio}</p>
+    `;
+    container.appendChild(card);
+  });
+</script>
+
+</body>
+</html>
