@@ -23,7 +23,6 @@
       transition: background 0.3s ease;
     }
 
-    /* Onde */
     .wave-top,
     .wave-bottom {
       width: 100%;
@@ -46,23 +45,39 @@
     .wave-bottom svg {
       display: block;
       width: 100%;
-      height: 250px;
+      height: 200px;
     }
 
     .wave-top svg {
       transform: rotate(180deg);
     }
 
+    /* Default wave color */
     .wave-top path,
     .wave-bottom path {
       fill: #3a3a3b;
       transition: fill 0.3s ease;
     }
 
-    /* Quando attiva una card */
-    body.focus-orange .wave-top path,
-    body.focus-orange .wave-bottom path {
-      fill: #ffcc99; /* arancione soft */
+    /* Colori dinamici delle onde */
+    body.wave-blue .wave-top path,
+    body.wave-blue .wave-bottom path {
+      fill: lightgreen;
+    }
+
+    body.wave-pink .wave-top path,
+    body.wave-pink .wave-bottom path {
+      fill: #fcf4e8;
+    }
+
+    body.wave-orange .wave-top path,
+    body.wave-orange .wave-bottom path {
+      fill: lightsalmon;
+    }
+
+    body.wave-purple .wave-top path,
+    body.wave-purple .wave-bottom path {
+      fill: lightskyblue;
     }
 
     .container {
@@ -71,7 +86,6 @@
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
       padding: 2rem;
-      transition: filter 0.3s ease;
     }
 
     .card {
@@ -85,42 +99,6 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-    }
-
-    .card:hover {
-      z-index: 2;
-      box-shadow: 0 10px 20px rgb(0 0 0 / 0.2);
-      transform: translateY(-10px);
-    }
-
-    /* Effetto blur su altre card */
-    body.hover-active .card {
-      filter: blur(2px);
-    }
-
-    body.hover-active .card.hovering {
-      filter: none;
-    }
-
-    /* Hover effetti unici */
-    .card:nth-child(1):hover {
-      background: #e0f7fa;
-      color: #00796b;
-    }
-
-    .card:nth-child(2):hover {
-      background: #fce4ec;
-      color: #880e4f;
-    }
-
-    .card:nth-child(3):hover {
-      background: #fff3e0;
-      color: #ef6c00;
-    }
-
-    .card:nth-child(4):hover {
-      background: #ede7f6;
-      color: #512da8;
     }
 
     .card img {
@@ -150,6 +128,42 @@
       color: #555;
     }
 
+    .card:hover {
+      box-shadow: 0 10px 20px rgb(0 0 0 / 0.2);
+      transform: translateY(-10px);
+      z-index: 2;
+    }
+
+    /* Blur delle altre card */
+    body.hover-active .card {
+      filter: blur(2px);
+    }
+
+    body.hover-active .card.hovering {
+      filter: none;
+    }
+
+    /* Hover background e testo */
+    .card:nth-child(1):hover {
+      background: #e0f7fa;
+      color: #00796b;
+    }
+
+    .card:nth-child(2):hover {
+      background: #fcf4e8;
+      color: rgb(223, 183, 107);
+    }
+
+    .card:nth-child(3):hover {
+      background: #fff3e0;
+      color: #ef6c00;
+    }
+
+    .card:nth-child(4):hover {
+      background: #ede7f6;
+      color: #512da8;
+    }
+
     .social-icons {
       margin-top: 1rem;
       display: flex;
@@ -165,56 +179,6 @@
 
     .social-icons a:hover {
       color: #000;
-    }
-
-    @media (max-width: 768px) {
-      body {
-        padding: 1rem;
-      }
-
-      .container {
-        padding: 1rem;
-        gap: 1rem;
-        grid-template-columns: 1fr;
-        max-width: 100%;
-      }
-
-      .card {
-        padding: 1rem;
-      }
-
-      .card img {
-        width: 100px;
-        height: 100px;
-        margin-bottom: 0.8rem;
-      }
-
-      .card h3 {
-        font-size: 1.3rem;
-      }
-
-      .card p.role {
-        font-size: 0.9rem;
-        margin-bottom: 0.8rem;
-      }
-
-      .card p.bio {
-        font-size: 0.85rem;
-      }
-    }
-
-    @media (min-width: 1400px) {
-      .card h3 {
-        font-size: 1.75rem;
-      }
-
-      .card p.role {
-        font-size: 1.1rem;
-      }
-
-      .card p.bio {
-        font-size: 1rem;
-      }
     }
   </style>
 </head>
@@ -240,31 +204,43 @@
         name: "Fabio Genito",
         role: "Team Lead & Project Promoter",
         bio: "Coordina il progetto, supporta il team e si impegna a valorizzare il lavoro svolto.",
-        img: "./images/Fabio.jpg"
+        img: "./images/Fabio.jpg",
+        waveClass: "wave-blue",
+        insta: "https://www.instagram.com/fabio_uge?igsh=ZzJ3dGl0ZDBoZGMx",
+        gmail: "fabiogenito03@gmail.com",
       },
       {
         name: "Michele Falcone",
         role: "Concept & Documentation Lead",
         bio: "Trasforma idee in piani chiari e documentati, fornendo la base per lo sviluppo.",
-        img: "https://randomuser.me/api/portraits/women/44.jpg"
+        img: "./images/Michele.jpg",
+        waveClass: "wave-pink",
+        insta: "https://www.instagram.com/mr.mike777?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+        gmail: "michele",
       },
       {
         name: "Giacomo Cuccaro",
         role: "Problem Solver & Support Lead",
         bio: "Risolve problemi, esplora soluzioni e supporta il team per superare ogni sfida.",
-        img: "https://randomuser.me/api/portraits/men/76.jpg"
+        img: "https://randomuser.me/api/portraits/men/76.jpg",
+        waveClass: "wave-orange",
+        insta: "https://www.instagram.com/9iacomo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+        gmail: "",
       },
       {
         name: "Catello Donnarumma",
         role: "Development Support",
         bio: "Gestisce gli strumenti tecnici e contribuisce attivamente allo sviluppo del progetto.",
-        img: "https://randomuser.me/api/portraits/women/68.jpg"
+        img: "https://randomuser.me/api/portraits/women/68.jpg",
+        waveClass: "wave-purple",
+        insta: "https://www.instagram.com/catello.donnarumma_/?utm_source=ig_web_button_share_sheet",
+        gmail: "",  
       }
     ];
 
     const container = document.getElementById('team-container');
 
-    teamMembers.forEach((member, index) => {
+    teamMembers.forEach((member) => {
       const card = document.createElement('div');
       card.classList.add('card');
       card.innerHTML = `
@@ -273,20 +249,18 @@
         <p class="role">${member.role}</p>
         <p class="bio">${member.bio}</p>
         <div class="social-icons">
-          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="${member.insta}" title="Instagram"><i class="fab fa-instagram"></i></a>
           <a href="mailto:example@email.com" title="Email"><i class="fas fa-envelope"></i></a>
         </div>
       `;
 
-      // Aggiungi eventi hover
       card.addEventListener('mouseenter', () => {
-        document.body.classList.add('hover-active', 'focus-orange');
+        document.body.classList.add('hover-active', member.waveClass);
         card.classList.add('hovering');
       });
 
       card.addEventListener('mouseleave', () => {
-        document.body.classList.remove('hover-active', 'focus-orange');
+        document.body.classList.remove('hover-active', member.waveClass);
         card.classList.remove('hovering');
       });
 
