@@ -1,247 +1,268 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<!-- Font Awesome CDN per le icone -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-<title>Team Info</title>
-<style>
-  /* Reset e base */
-  * {
-    box-sizing: border-box;
-  }
-  /* Sfondo ondeggiato con SVG */
-body::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 250px;
-  width: 100%;
-  background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23a29bfe" fill-opacity="1" d="M0,96L30,112C60,128,120,160,180,165.3C240,171,300,149,360,154.7C420,160,480,192,540,192C600,192,660,160,720,138.7C780,117,840,107,900,122.7C960,139,1020,181,1080,176C1140,171,1200,117,1260,90.7C1320,64,1380,64,1410,64L1440,64L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z"></path></svg>') no-repeat top;
-  background-size: cover;
-  z-index: -1;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Team Info</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-/* Social icons */
-.social-icons {
-  margin-top: 1rem;
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-}
-.social-icons a {
-  color: #666;
-  font-size: 1.2rem;
-  transition: color 0.3s;
-}
-.social-icons a:hover {
-  color: #000;
-}
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f0f2f5;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
-  .container {
-    max-width: 1200px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
-  }
-
-  /* Card base */
-  .card {
-    background: white;
-    border-radius: 15px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 6px rgb(0 0 0 / 0.1);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  /* Effetti onHover diversi per ogni card */
-  .card:hover {
-    box-shadow: 0 10px 20px rgb(0 0 0 / 0.2);
-    transform: translateY(-10px);
-  }
-  .card:nth-child(1):hover {
-    background: #e0f7fa;
-    color: #00796b;
-    transform: scale(1.05) translateY(-10px);
-  }
-  .card:nth-child(2):hover {
-    background: #fce4ec;
-    color: #880e4f;
-    transform: rotate(2deg) translateY(-10px);
-  }
-  .card:nth-child(3):hover {
-    background: #fff3e0;
-    color: #ef6c00;
-    transform: translateX(5px) translateY(-10px);
-  }
-  .card:nth-child(4):hover {
-    background: #ede7f6;
-    color: #512da8;
-    transform: translateX(-5px) translateY(-10px);
-  }
-
-  /* Immagine profilo */
-  .card img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 1rem;
-    border: 3px solid #ddd;
-  }
-
-  /* Nome */
-  .card h3 {
-    margin: 0.5rem 0;
-    font-size: 1.5rem;
-  }
-  /* Ruolo */
-  .card p.role {
-    font-weight: 600;
-    font-size: 1rem;
-    margin: 0.2rem 0 1rem 0;
-    font-style: italic;
-  }
-  /* Bio o descrizione */
-  .card p.bio {
-    font-size: 0.9rem;
-    line-height: 1.4;
-    color: #555;
-  }
-  .wave-bottom {
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-  }
-  .wave-bottom svg {
-    display: block;
-    width: 100%;
-    height: 150px;
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
     body {
-      padding: 1rem;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f2f5;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      position: relative;
     }
-    .container {
-      padding: 1rem;
-      gap: 1rem;
-      grid-template-columns: 1fr;
-      max-width: 100%;
-    }
-    .card {
-      padding: 1rem;
-    }
-    .card img {
-      width: 100px;
-      height: 100px;
-      margin-bottom: 0.8rem;
-    }
-    .card h3 {
-      font-size: 1.3rem;
-    }
-    .card p.role {
-      font-size: 0.9rem;
-      margin-bottom: 0.8rem;
-    }
-    .card p.bio {
-      font-size: 0.85rem;
-    }
-  }
 
-  @media (min-width: 1400px) {
+    .wave-top,
+    .wave-bottom {
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      position: absolute;
+      left: 0;
+      z-index: -1;
+    }
+
+    .wave-top {
+      top: 0;
+    }
+
+    .wave-top svg {
+      display: block;
+      width: 100%;
+      height: 150px;
+      transform: rotate(180deg);
+    }
+
+    .wave-bottom {
+      bottom: 0;
+    }
+
+    .wave-bottom svg {
+      display: block;
+      width: 100%;
+      height: 150px;
+    }
+
+    .social-icons {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .social-icons a {
+      color: #666;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #000;
+    }
+
+    .container {
+      max-width: 1200px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px rgb(0 0 0 / 0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .card:hover {
+      box-shadow: 0 10px 20px rgb(0 0 0 / 0.2);
+      transform: translateY(-10px);
+    }
+
+    .card:nth-child(1):hover {
+      background: #e0f7fa;
+      color: #00796b;
+      transform: scale(1.05) translateY(-10px);
+    }
+
+    .card:nth-child(2):hover {
+      background: #fce4ec;
+      color: #880e4f;
+      transform: rotate(2deg) translateY(-10px);
+    }
+
+    .card:nth-child(3):hover {
+      background: #fff3e0;
+      color: #ef6c00;
+      transform: translateX(5px) translateY(-10px);
+    }
+
+    .card:nth-child(4):hover {
+      background: #ede7f6;
+      color: #512da8;
+      transform: translateX(-5px) translateY(-10px);
+    }
+
+    .card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border: 3px solid #ddd;
+    }
+
     .card h3 {
-      font-size: 1.75rem;
+      margin: 0.5rem 0;
+      font-size: 1.5rem;
     }
+
     .card p.role {
-      font-size: 1.1rem;
-    }
-    .card p.bio {
+      font-weight: 600;
       font-size: 1rem;
+      margin: 0.2rem 0 1rem 0;
+      font-style: italic;
     }
-  }
-</style>
+
+    .card p.bio {
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: #555;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      .container {
+        padding: 1rem;
+        gap: 1rem;
+        grid-template-columns: 1fr;
+        max-width: 100%;
+      }
+
+      .card {
+        padding: 1rem;
+      }
+
+      .card img {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 0.8rem;
+      }
+
+      .card h3 {
+        font-size: 1.3rem;
+      }
+
+      .card p.role {
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+      }
+
+      .card p.bio {
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (min-width: 1400px) {
+      .card h3 {
+        font-size: 1.75rem;
+      }
+
+      .card p.role {
+        font-size: 1.1rem;
+      }
+
+      .card p.bio {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-<div class="wave-bottom">
-  <svg viewBox="0 0 1440 150" preserveAspectRatio="none">
-    <path d="M0,0 C480,100 960,0 1440,100 L1440,150 L0,150 Z" fill="#f0f2f5"></path>
-  </svg>
-</div>
-<div class="container" id="team-container">
-  <!-- Cards generate via JS -->
-</div>
 
-<script>
-  // Dati team
-  const teamMembers = [
-    {
-      name: "Fabio Genito",
-      role: "Team Lead & Project Promoter",
-      bio: "Coordina il progetto, supporta il team e si impegna a valorizzare il lavoro svolto.",
-      img: "https://randomuser.me/api/portraits/men/32.jpg"
-    },
-    {
-      name: "Michele Falcone",
-      role: "Concept & Documentation Lead",
-      bio: "Trasforma idee in piani chiari e documentati, fornendo la base per lo sviluppo.",
-      img: "https://randomuser.me/api/portraits/women/44.jpg"
-    },
-    {
-      name: "Giacomo Cuccaro",
-      role: "Problem Solver & Support Lead",
-      bio: "Risolve problemi, esplora soluzioni e supporta il team per superare ogni sfida.",
-      img: "https://randomuser.me/api/portraits/men/76.jpg"
-    },
-    {
-      name: "Catello Donnarumma",
-      role: "Development Support",
-      bio: "Gestisce gli strumenti tecnici e contribuisce attivamente allo sviluppo del progetto.",
-      img: "https://randomuser.me/api/portraits/women/68.jpg"
-    }
-  ];
+  <div class="wave-top">
+    <svg viewBox="0 0 1440 150" preserveAspectRatio="none">
+      <path d="M0,0 C480,100 960,0 1440,100 L1440,150 L0,150 Z" fill="#f0f2f5"></path>
+    </svg>
+  </div>
 
-  const container = document.getElementById('team-container');
+  <div class="container" id="team-container">
+    <!-- Cards generate via JS -->
+  </div>
 
-  teamMembers.forEach(member => {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    card.innerHTML = `
-      <img src="${member.img}" alt="Foto di ${member.name}">
-      <h3>${member.name}</h3>
-      <p class="role">${member.role}</p>
-      <p class="bio">${member.bio}</p>
-      <div class="social-icons">
-        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
-        <a href="mailto:example@email.com" title="Email"><i class="fas fa-envelope"></i></a>
-      </div>
-    `;
-    container.appendChild(card);
-  });
-</script>
+  <div class="wave-bottom">
+    <svg viewBox="0 0 1440 150" preserveAspectRatio="none">
+      <path d="M0,0 C480,100 960,0 1440,100 L1440,150 L0,150 Z" fill="#f0f2f5"></path>
+    </svg>
+  </div>
+
+  <script>
+    const teamMembers = [
+      {
+        name: "Fabio Genito",
+        role: "Team Lead & Project Promoter",
+        bio: "Coordina il progetto, supporta il team e si impegna a valorizzare il lavoro svolto.",
+        img: "https://randomuser.me/api/portraits/men/32.jpg"
+      },
+      {
+        name: "Michele Falcone",
+        role: "Concept & Documentation Lead",
+        bio: "Trasforma idee in piani chiari e documentati, fornendo la base per lo sviluppo.",
+        img: "https://randomuser.me/api/portraits/women/44.jpg"
+      },
+      {
+        name: "Giacomo Cuccaro",
+        role: "Problem Solver & Support Lead",
+        bio: "Risolve problemi, esplora soluzioni e supporta il team per superare ogni sfida.",
+        img: "https://randomuser.me/api/portraits/men/76.jpg"
+      },
+      {
+        name: "Catello Donnarumma",
+        role: "Development Support",
+        bio: "Gestisce gli strumenti tecnici e contribuisce attivamente allo sviluppo del progetto.",
+        img: "https://randomuser.me/api/portraits/women/68.jpg"
+      }
+    ];
+
+    const container = document.getElementById('team-container');
+
+    teamMembers.forEach(member => {
+      const card = document.createElement('div');
+      card.classList.add('card');
+      card.innerHTML = `
+        <img src="${member.img}" alt="Foto di ${member.name}">
+        <h3>${member.name}</h3>
+        <p class="role">${member.role}</p>
+        <p class="bio">${member.bio}</p>
+        <div class="social-icons">
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="mailto:example@email.com" title="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  </script>
 
 </body>
 </html>
