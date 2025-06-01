@@ -20,8 +20,10 @@
       align-items: center;
       min-height: 100vh;
       position: relative;
+      transition: background 0.3s ease;
     }
 
+    /* Onde */
     .wave-top,
     .wave-bottom {
       width: 100%;
@@ -36,43 +38,31 @@
       top: 0;
     }
 
-    .wave-top svg {
-      display: block;
-      width: 100%;
-      height: 250px;
-      transform: rotate(180deg);
-    }
-
     .wave-bottom {
       bottom: 0;
     }
 
+    .wave-top svg,
     .wave-bottom svg {
       display: block;
       width: 100%;
       height: 250px;
     }
-        
+
+    .wave-top svg {
+      transform: rotate(180deg);
+    }
+
     .wave-top path,
     .wave-bottom path {
       fill: #3a3a3b;
+      transition: fill 0.3s ease;
     }
 
-    .social-icons {
-      margin-top: 1rem;
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-    }
-
-    .social-icons a {
-      color: #666;
-      font-size: 1.2rem;
-      transition: color 0.3s;
-    }
-
-    .social-icons a:hover {
-      color: #000;
+    /* Quando attiva una card */
+    body.focus-orange .wave-top path,
+    body.focus-orange .wave-bottom path {
+      fill: #ffcc99; /* arancione soft */
     }
 
     .container {
@@ -81,6 +71,7 @@
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
       padding: 2rem;
+      transition: filter 0.3s ease;
     }
 
     .card {
@@ -97,32 +88,39 @@
     }
 
     .card:hover {
+      z-index: 2;
       box-shadow: 0 10px 20px rgb(0 0 0 / 0.2);
       transform: translateY(-10px);
     }
 
+    /* Effetto blur su altre card */
+    body.hover-active .card {
+      filter: blur(2px);
+    }
+
+    body.hover-active .card.hovering {
+      filter: none;
+    }
+
+    /* Hover effetti unici */
     .card:nth-child(1):hover {
       background: #e0f7fa;
       color: #00796b;
-      transform: rotate(-2deg) translateY(-10px);
     }
 
     .card:nth-child(2):hover {
       background: #fce4ec;
       color: #880e4f;
-      transform: rotate(2deg) translateY(-10px);
     }
 
     .card:nth-child(3):hover {
       background: #fff3e0;
       color: #ef6c00;
-      transform: rotate(-2deg) translateY(-10px);
     }
 
     .card:nth-child(4):hover {
       background: #ede7f6;
       color: #512da8;
-      transform: rotate(2deg) translateY(-10px);
     }
 
     .card img {
@@ -150,6 +148,23 @@
       font-size: 0.9rem;
       line-height: 1.4;
       color: #555;
+    }
+
+    .social-icons {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .social-icons a {
+      color: #666;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #000;
     }
 
     @media (max-width: 768px) {
@@ -207,17 +222,15 @@
 
   <div class="wave-top">
     <svg viewBox="0 0 1440 150" preserveAspectRatio="none">
-      <path d="M0,0 C480,100 960,0 1440,100 L1440,150 L0,150 Z" fill="#f0f2f5"></path>
+      <path d="M0,0 C480,100 960,0 1440,100 L1440,150 L0,150 Z"></path>
     </svg>
   </div>
 
-  <div class="container" id="team-container">
-    <!-- Cards generate via JS -->
-  </div>
+  <div class="container" id="team-container"></div>
 
   <div class="wave-bottom">
     <svg viewBox="0 0 1440 150" preserveAspectRatio="none">
-      <path d="M0,0 C480,100 960,0 1440,100 L1440,150 L0,150 Z" fill="#f0f2f5"></path>
+      <path d="M0,0 C480,100 960,0 1440,100 L1440,150 L0,150 Z"></path>
     </svg>
   </div>
 
@@ -227,7 +240,7 @@
         name: "Fabio Genito",
         role: "Team Lead & Project Promoter",
         bio: "Coordina il progetto, supporta il team e si impegna a valorizzare il lavoro svolto.",
-        img: "./Fabio4.jpg"
+        img: "./images/Fabio.jpg"
       },
       {
         name: "Michele Falcone",
@@ -251,7 +264,7 @@
 
     const container = document.getElementById('team-container');
 
-    teamMembers.forEach(member => {
+    teamMembers.forEach((member, index) => {
       const card = document.createElement('div');
       card.classList.add('card');
       card.innerHTML = `
@@ -265,6 +278,18 @@
           <a href="mailto:example@email.com" title="Email"><i class="fas fa-envelope"></i></a>
         </div>
       `;
+
+      // Aggiungi eventi hover
+      card.addEventListener('mouseenter', () => {
+        document.body.classList.add('hover-active', 'focus-orange');
+        card.classList.add('hovering');
+      });
+
+      card.addEventListener('mouseleave', () => {
+        document.body.classList.remove('hover-active', 'focus-orange');
+        card.classList.remove('hovering');
+      });
+
       container.appendChild(card);
     });
   </script>
